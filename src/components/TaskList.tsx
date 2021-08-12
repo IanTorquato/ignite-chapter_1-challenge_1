@@ -17,11 +17,11 @@ export function TaskList() {
     if(!newTaskTitle.trim()) return
 
     setTasks([...tasks, { id: Math.round(Math.random() * 100), title: newTaskTitle.trim(), isComplete: false }])
-    setNewTaskTitle('yar')
+    setNewTaskTitle('')
   }
 
   function handleToggleTaskCompletion(id: number) {
-    setTasks(tasks.map(task => task.id === id ? {...task, isComplete: !task.isComplete } : task))
+    setTasks(tasks.map(task => task.id === id ? { ...task, isComplete: !task.isComplete } : task))
   }
 
   function handleRemoveTask(id: number) {
@@ -40,6 +40,7 @@ export function TaskList() {
             onChange={(e) => setNewTaskTitle(e.target.value)}
             value={newTaskTitle}
           />
+          
           <button type='submit' data-testid='add-task-button' onClick={handleCreateNewTask}>
             <FiCheckSquare size={16} color='#fff'/>
           </button>
